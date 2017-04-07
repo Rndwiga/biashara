@@ -23,31 +23,30 @@
         <div class="container">
             <div class="w3ls_about_grids">
                 <div class="col-md-6 w3ls_about_grid_left">
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.</p>
+                    <p>Click Away hardware is an online store for construction materials specialized in supply
+                    of raw materials finished products and machinery. The Click Away hardware team ha gone around
+                    the country and seen the disconnect between consumers and suppliers of construction materials,
+                    we are your solution, we are what you need, we are click away from your dream house, dream
+                    palace, dream office space and dream project.</p>
                     <div class="col-xs-2 w3ls_about_grid_left1">
                         <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
                     </div>
                     <div class="col-xs-10 w3ls_about_grid_left2">
-                        <p>Sunt in culpa qui officia deserunt mollit
-                            anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur.</p>
+                        <p>Click Away hardware also provides a marketing platform for business that engages in supply of
+                        construction materials like; stones, steel, san, ballast, hardcore, red soil, paints etc.</p>
                     </div>
                     <div class="clearfix"> </div>
                     <div class="col-xs-2 w3ls_about_grid_left1">
                         <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
                     </div>
                     <div class="col-xs-10 w3ls_about_grid_left2">
-                        <p>Sunt in culpa qui officia deserunt mollit
-                            anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur.</p>
+                        <p>If you are a supplier, sign up with Click Away hardware and let's build the nation's best
+                        buildings together.</p>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
                 <div class="col-md-6 w3ls_about_grid_right">
-                    <img src="{{asset('vendor/tyondo/biashara/images/52.jpg')}}" alt=" " class="img-responsive" />
+                    <img src="{{asset('vendor/tyondo/biashara/images/biashara/hardware.jpg')}}" alt=" " class="img-responsive" />
                 </div>
                 <div class="clearfix"> </div>
             </div>

@@ -1,13 +1,11 @@
 @extends(config('biashara.views.layouts.master'))
 @section('content')
     <!-- modal-windows -->
-    @include(config('biashara.views.pages.home.modal.mobile'))
-    @include(config('biashara.views.pages.home.modal.home'))
-    @include(config('biashara.views.pages.home.modal.computer'))
-    @include(config('biashara.views.pages.home.modal.household'))
-    @include(config('biashara.views.pages.home.modal.kitchen'))
-    @include(config('biashara.views.pages.home.modal.vaccum'))
-    @include(config('biashara.views.pages.home.modal.dinning'))
+    @include(config('biashara.views.pages.home.modal.machinery'))
+    @include(config('biashara.views.pages.home.modal.redsoil'))
+    @include(config('biashara.views.pages.home.modal.sand'))
+    @include(config('biashara.views.pages.home.modal.stones'))
+
     <!-- //modal-windows -->
     <!-- banner -->
         {{--Activate banner when we grow and are advertising--}}

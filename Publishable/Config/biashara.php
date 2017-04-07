@@ -53,13 +53,8 @@ return [
               'special-deals'=>'biashara::frontend.pages.home.special-deals',
               'top-brand'=>'biashara::frontend.pages.home.top-brand',
               'modal'=>[
-                  'computer'=>'biashara::frontend.pages.home.modal.computer-modal',
-                  'dinning'=>'biashara::frontend.pages.home.modal.dinning-modal',
-                  'home'=>'biashara::frontend.pages.home.modal.home-mobile',
-                  'household'=>'biashara::frontend.pages.home.modal.household-modal',
-                  'kitchen'=>'biashara::frontend.pages.home.modal.kitchen-modal',
-                  'mobile'=>'biashara::frontend.pages.home.modal.mobile-modal',
-                  'vaccum'=>'biashara::frontend.pages.home.modal.vaccum-modal'
+                  'template'=>'biashara::frontend.pages.home.modal.template',
+                  'machinery'=>'biashara::frontend.pages.home.modal.machinery',
               ]
           ]
       ],

@@ -27,24 +27,20 @@
             <div class="agile_mail_grids">
                 <div class="col-md-5 contact-left">
                     <h4>Address</h4>
-                    <p>est eligendi optio cumque nihil impedit quo minus id quod maxime
-                        <span>26 56D Rescue,US</span></p>
                     <ul>
-                        <li>Free Phone :+1 078 4589 2456</li>
-                        <li>Telephone :+1 078 4589 2456</li>
-                        <li>Fax :+1 078 4589 2456</li>
-                        <li><a href="mailto:info@example.com">info@example.com</a></li>
+                        <li>Telephone :+254 720 891 500</li>
+                        <li><a href="mailto:info@clickawayhardware.co.ke">info@clickawayhardware.co.ke</a></li>
                     </ul>
                 </div>
                 <div class="col-md-7 contact-left">
                     <h4>Contact Form</h4>
-                    <form action="#" method="post">
-                        <input type="text" name="Name" placeholder="Your Name" required="">
-                        <input type="email" name="Email" placeholder="Your Email" required="">
-                        <input type="text" name="Telephone" placeholder="Telephone No" required="">
+                    {{Form::open( ['route' => 'biashara.auth.login'])}}
+                        <input type="text" name="name" placeholder="Your Name" required="">
+                        <input type="email" name="email" placeholder="Your Email" required="">
+                        <input type="text" name="mobile_number" placeholder="Telephone No" required="">
                         <textarea name="message" placeholder="Message..." required=""></textarea>
                         <input type="submit" value="Submit" >
-                    </form>
+                    {{Form::close() }}
                 </div>
                 <div class="clearfix"> </div>
             </div>

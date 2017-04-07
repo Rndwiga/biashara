@@ -143,7 +143,7 @@ label.icon-search {
 	-webkit-transition:0.3s all ease-out 0.5s;
 }
 label.icon-search span {
-    color: #ff5063;
+    color: #3c43a4;
     border: 1px solid;
     padding: .6em;
 }
@@ -177,7 +177,7 @@ a.simpleCart_empty {
     display: block;
 }
 .w3view-cart {
-    background: #ff5063;
+    background: #3c43a4;
     border: none;
     -o-border-radius: 7%;
     -ms-border-radius: 7%;
@@ -289,7 +289,7 @@ a.simpleCart_empty {
     position: relative;
 }
 p.sbmincart-empty-text {
-    color: #f44336;
+    color: #3c43a4;
     font-weight: 500;
 }
 #w3lssbmincart .sbmincart-subtotal {
@@ -304,7 +304,7 @@ p.sbmincart-empty-text {
     margin-right: 6px;
     padding: 0;
     border: none;
-    color: #ff5063;
+    color: #3c43a4;
     background: none;
     outline: none;
     font-size: 0.9em;
@@ -448,7 +448,7 @@ ul.multi-column-dropdown h6 {
 .navigation {
     margin: 2em 0 0;
 	text-align:center;
-	background:#3c43a4;
+	background: #d7ba13;
 }
 .navbar-nav {
     float: none;
@@ -665,7 +665,7 @@ li.w3pages .dropdown-menu > li > a:hover{
 }
 .agile_ecommerce_tab_left h5 a {
     font-size: 1.2em;
-    color: #ff5063;
+    color: #3c43a4;
     text-decoration: none;
     font-weight: 700;
 	-webkit-transition:.5s all;
@@ -1384,20 +1384,20 @@ ul.wmuSliderPagination {
     bottom: -75%;
     width: 50px;
     height: 50px;
-    border: 3px solid #ff5063;
+    border: 3px solid #3c43a4;
     border-radius: 25px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
     -o-border-radius: 25px;
     -ms-border-radius: 25px;
-    box-shadow: 0px 0px 5px 0px #ff5063;
+    box-shadow: 0px 0px 5px 0px #3c43a4;
 	-webkit-transition:.5s all;
 	-moz-transition:.5s all; 
 	transition:.5s all;
 	
 }
 .footer-copy-pos:hover {
-    box-shadow: 0px 0px 30px 5px #ff5063;
+    box-shadow: 0px 0px 30px 5px #3c43a4;
 }
 .footer-copy p{
 	margin:4em 0 0;
