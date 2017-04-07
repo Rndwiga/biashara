@@ -7,6 +7,15 @@ Route::get('/', $namespaceController.'BiasharaFrontEndController@index')->name('
 Route::get('/about', $namespaceController.'BiasharaFrontEndController@about')->name('biashara.about');
 Route::get('/contact', $namespaceController.'BiasharaFrontEndController@contact')->name('biashara.contact');
 Route::post('/contact', $namespaceController.'BiasharaFrontEndController@storeContact')->name('contact.store');
+Route::post('/order/details', function (){
+    $input = Illuminate\Support\Facades\Input::all();
+    foreach ($input as $key=>$data){
+        echo $key . '=> '. $data;
+        echo '<br>';
+    }
+    exit;
+    return $input;
+});
 
 Route::group(['prefix'=>'auth'], function(){
     event('biashara.routing',app('router'));

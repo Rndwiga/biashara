@@ -16,8 +16,8 @@ return [
     | Business Name & Slogan
     |--------------------------------------------------------------------------
     */
-    'name' => 'Click Away Biashara',
-    'slogan' => 'Your biashara. Your place.',
+    'name' => 'Click Away Hardware',
+    'slogan' => 'Your Construction. Your hardware.',
 
     'views' => [
       'layouts' => [
@@ -55,6 +55,9 @@ return [
               'modal'=>[
                   'template'=>'biashara::frontend.pages.home.modal.template',
                   'machinery'=>'biashara::frontend.pages.home.modal.machinery',
+                  'redsoil'=>'biashara::frontend.pages.home.modal.redsoil',
+                  'sand'=>'biashara::frontend.pages.home.modal.sand',
+                  'stones'=>'biashara::frontend.pages.home.modal.stones',
               ]
           ]
       ],

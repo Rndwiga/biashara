@@ -18,9 +18,9 @@
 <script type="text/javascript">
     $(window).load(function() {
         $("#flexiselDemo1").flexisel({
-            visibleItems: 4,
+            visibleItems: 1, //there were 4
             animationSpeed: 1000,
-            autoPlay: true,
+            autoPlay: false,  //it was true
             autoPlaySpeed: 3000,
             pauseOnHover: true,
             enableResponsiveBreakpoints: true,

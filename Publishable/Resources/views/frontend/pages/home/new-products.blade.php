@@ -15,7 +15,7 @@
                             </ul>
                         </div>
                     </div>
-                    <h5><a href="single.html">Machinery</a></h5>
+                    <h5><a href="#" data-toggle="modal" data-target="#machinery">Machinery</a></h5>
                     {{--<div class="simpleCart_shelfItem">
                         <p><span>$520</span> <i class="item_price">$500</i></p>
                         <form action="#" method="post">
@@ -40,7 +40,7 @@
                             </ul>
                         </div>
                     </div>
-                    <h5><a href="single.html">Red Soil</a></h5>
+                    <h5><a href="#" data-toggle="modal" data-target="#redsoil">Red Soil</a></h5>
                     {{--<div class="simpleCart_shelfItem">
                         <p><span>$380</span> <i class="item_price">$370</i></p>
                         <form action="#" method="post">
@@ -65,7 +65,7 @@
                             </ul>
                         </div>
                     </div>
-                    <h5><a href="single.html">Sand</a></h5>
+                    <h5><a href="#" data-toggle="modal" data-target="#sand">Sand</a></h5>
                     {{--<div class="simpleCart_shelfItem">
                         <p><span>$150</span> <i class="item_price">$100</i></p>
                         <form action="#" method="post">
@@ -90,7 +90,7 @@
                             </ul>
                         </div>
                     </div>
-                    <h5><a href="single.html">Stone</a></h5>
+                    <h5><a href="#" data-toggle="modal" data-target="#stones">Stone</a></h5>
                     {{--<div class="simpleCart_shelfItem">
                         <p><span>$280</span> <i class="item_price">$250</i></p>
                         <form action="#" method="post">
