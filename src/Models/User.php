@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    /**
+     * Users can have many orders.
+     *
+     * @return object
+     */
+    public function orders()
+    {
+        return $this->belongsToMany('\Tyondo\Biashara\Models\Orders')->withTimestamps();
+    }
 }

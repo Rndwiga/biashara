@@ -5,6 +5,7 @@ namespace Tyondo\Biashara\Http\Controllers;
 use Illuminate\Http\Request;
 use Tyondo\Biashara\Models\Orders;
 use Tyondo\Biashara\Models\orderNumber;
+use Illuminate\Support\Facades\Auth;
 
 class BiasharaOrdersController extends Controller
 {
@@ -15,7 +16,9 @@ class BiasharaOrdersController extends Controller
      */
     public function index()
     {
-        return view(config('biashara.views.pages.home.index'));
+        $orders =Orders::all();
+
+        return view(config('biashara.views.backend.order-list'),compact('orders'));
     }
 
     /**
@@ -64,6 +67,7 @@ class BiasharaOrdersController extends Controller
         foreach ($chunks as $chunk){
             if(count($chunk) == 6){ //filtering out unwanted array data
                     $order = new Orders();
+                    $order->user_id = Auth::user()->id;
                     $order->order_number_id = $order_number;
                     $order->product = $chunk[1];
                     $order->quantity = $chunk[0];
@@ -87,12 +91,12 @@ class BiasharaOrdersController extends Controller
         $data = orderNumber::all();
         $last_number = collect($data)->last();
             if($last_number != null){
-                $segment = explode(config_path('biashara.order_number_prefix'),$last_number->order_number);
+                $segment = explode(config('biashara.order_number_prefix'),$last_number->order_number);
                 $increment= ++$segment[1];
             }else{
                 $increment = 1;
             }
-        $orderNumber =config_path('biashara.order_number_prefix'). $increment;
+        $orderNumber =config('biashara.order_number_prefix'). $increment;
         $order = new orderNumber();
         $order->order_number = $orderNumber;
         $order->save();

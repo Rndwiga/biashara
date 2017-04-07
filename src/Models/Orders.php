@@ -14,4 +14,13 @@ class Orders extends Model
     protected $fillable = [
         'order_number_id', 'product', 'quantity','unit_price','product_total_order','sub_total',
     ];
+    /**
+     * An order can have only have one order number.
+     *
+     * @return object
+     */
+    public function orderNumber()
+    {
+        return $this->belongsTo('Tyondo\Biashara\Models\orderNumber');
+    }
 }
