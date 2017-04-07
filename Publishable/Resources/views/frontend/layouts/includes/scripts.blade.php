@@ -46,6 +46,9 @@
 <script src="{{asset('vendor/tyondo/biashara/js/minicart.js')}}"></script>
 <script>
     w3ls.render();
+    @if(isset($reset_cart))
+        w3ls.reset();
+    @endif
 
     w3ls.cart.on('w3sb_checkout', function (evt) {
         var items, len, i;
