@@ -53,7 +53,10 @@ class BiasharaOrdersController extends Controller
         $this->parseReceivedOrder($request);
      // return $this->orderNumber();
         $reset_cart = ['reset'=>1];
-        return view(config('biashara.views.pages.about.index'),compact('reset_cart'));
+        //return view(config('biashara.views.backend.order-list'),compact('orders'));
+        //return view(config('biashara.views.pages.about.index'),compact('reset_cart'));
+        $orders =Orders::where('id', Auth::user()->id)->get();
+        return view(config('biashara.views.backend.order-list'),compact('reset_cart','orders'));
     }
     /**
      * Parse the submitted order
