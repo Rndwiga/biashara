@@ -2,6 +2,7 @@
 
 namespace Tyondo\Biashara;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
@@ -95,6 +96,7 @@ class TyondoBiasharaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
         $this->registerConfigs();
         $this->handleMigrations();
         $this->publishResources();
