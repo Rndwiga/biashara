@@ -24,19 +24,14 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-
+            @if(isset($order_details))
 
             <div class="col-md-9 col-sm-9 col-xs-12">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        @if(isset($order_details))
                         <h3 class="text-center"><strong>Order #{{$order_details['order_number']->orderNumber->order_number}}</strong></h3>
-                        @else
-                        <h3>No orders</h3>
-                        @endif
                     </div>
                     <div class="panel-body">
-                        @if(isset($order_details))
                         <div class="table-responsive">
                             <table class="table table-condensed">
                                 <thead>
@@ -72,9 +67,8 @@
                                 </tr>
                                 <tr>
                                     <td class="emptyrow">
-                                        <a href="{{ route('biashara.order.save', $order->order_number_id) }}" class="btn btn-primary">submit</a>
+                                        <button class="btn btn-primary">submit</button>
                                         <button class="btn btn-danger">Delete</button>
-                                        <button class="btn btn-success">Update</button>
                                     </td>
                                     <td class="emptyrow"></td>
                                     <td class="emptyrow text-center"><strong>Total</strong></td>
@@ -86,26 +80,23 @@
                                 </tbody>
                             </table>
                         </div>
-                        @endif
                     </div>
                 </div>
             </div>
 
-
+            @endif
             <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="panel panel-info">
                     <div class="panel-body">
                         <ul class="list-group">
-                            @if(isset($order_numbers))
                             <li  class="list-group-item list-group-item-info disabled">Order Number<span class="badge">Time Created</span></li>
+                            @if(isset($order_numbers))
                                 @foreach($order_numbers as $order)
                                     <a href="{{ route('biashara.order.show', $order->id) }}" class="list-group-item">
                                         {{$order->order_number}}
                                         <span class="badge">{{$order->created_at->diffForhumans()}}</span>
                                     </a>
                                 @endforeach
-                            @else
-                                <h3>No orders</h3>
                             @endif
                         </ul>
 

@@ -7,9 +7,11 @@ use Tyondo\Biashara\Models\Orders;
 use Tyondo\Biashara\Models\Draft_order;
 use Tyondo\Biashara\Models\orderNumber;
 use Illuminate\Support\Facades\Auth;
+use Tyondo\Biashara\Traits\OrderTransactions;
 
 class BiasharaOrdersController extends Controller
 {
+    use OrderTransactions;
     /**
      * Display index
      *
@@ -21,9 +23,29 @@ class BiasharaOrdersController extends Controller
 
         return view(config('biashara.views.backend.order-list'),compact('orders'));
     }
+    public function saveOrder($orderNumberId){
+        $items = $this->getSingleDraftOrder($orderNumberId);
+
+            foreach ($items as $item){
+                $order = new Orders();
+                $order->user_id = $item->user_id;
+                $order->order_number_id = $item->order_number_id;
+                $order->product = $item->product;
+                $order->quantity = $item->quantity;
+                $order->unit_price = $item->unit_price;
+                $order->product_total_order = $item->product_total_order;
+                $order->save();
+                //delete the item once saved
+                $this->deleteSingleDraftOrder($item->id);
+            }
+            $this->changeOrderstatus($orderNumberId,'submitted');
+        return redirect(route('biashara.order.list'));
+
+    }
     public function draftOrders($id = null)
     {
         $orders =Draft_order::where('user_id', Auth::user()->id)->get();
+        if(count($orders )> 0){
             $order_numbers = orderNumber::where('order_status', 'draft')->get();
             if($id == null){
                 $latest_order = Draft_order::where('order_number_id', collect($orders)->last()->order_number_id)->get();
@@ -31,14 +53,16 @@ class BiasharaOrdersController extends Controller
                 $latest_order = Draft_order::where('order_number_id', $id)->get();
             }
 
-        //return collect($latest_order)->first();
+            //return collect($latest_order)->first();
             $order_details = [
-              'details'=>  $latest_order,
-              'order_number'=>  collect($latest_order)->first(),
-              'sub_total' => collect($latest_order)->sum('product_total_order'),
-              'tax' => 16,
-              'total' => (((collect($latest_order)->sum('product_total_order'))/16)+collect($latest_order)->sum('product_total_order'))
+                'details'=>  $latest_order,
+                'order_number'=>  collect($latest_order)->first(),
+                'sub_total' => collect($latest_order)->sum('product_total_order'),
+                'tax' => 16,
+                'total' => (((collect($latest_order)->sum('product_total_order'))/16)+collect($latest_order)->sum('product_total_order'))
             ];
+            return view(config('biashara.views.backend.order-draft'),compact('order_numbers','order_details'));
+        }
         return view(config('biashara.views.backend.order-draft'),compact('order_numbers','order_details'));
     }
 
