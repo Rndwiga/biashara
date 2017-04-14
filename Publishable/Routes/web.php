@@ -20,4 +20,7 @@ Route::group(['prefix'=>'order'], function(){
     $namespaceController = '\\'.'Tyondo\Biashara\Http\Controllers'.'\\';
         Route::post('/details', $namespaceController.'BiasharaOrdersController@storeOrder');
         Route::get('/list', $namespaceController.'BiasharaOrdersController@index')->name('biashara.order.list');
+        Route::get('/draft', $namespaceController.'BiasharaOrdersController@draftOrders')->name('biashara.order.draft');
+       // Route::get('/show', $namespaceController.'BiasharaOrdersController@showOrder')->name('biashara.order.show');
+        Route::get('/show/{id}', $namespaceController.'BiasharaOrdersController@draftOrders')->name('biashara.order.show');
 });

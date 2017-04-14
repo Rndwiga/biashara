@@ -20,11 +20,13 @@
                             <thead>
                             <tr>
                                 <th>Order ID</th>
+                                <th>Status</th>
                                 <th>Product</th>
                                 <th>Quantity</th>
                                 <th>Unit Price</th>
                                 <th>Total</th>
                                 <th>Created</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -32,11 +34,13 @@
                                 @foreach($orders as $order)
                                     <tr>
                                         <td>{{$order->orderNumber->order_number}}</td>
+                                        <td>{{$order->order_status}}</td>
                                         <td>{{$order->product}}</td>
                                         <td>{{$order->quantity}}</td>
                                         <td>{{$order->unit_price}}</td>
                                         <td>{{$order->product_total_order}}</td>
                                         <td>{{$order->created_at->diffForhumans()}}</td>
+                                        <td></td>
                                     </tr>
                                 @endforeach
                             @endif

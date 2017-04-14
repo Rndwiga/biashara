@@ -12,6 +12,6 @@ class orderNumber extends Model
      * @var array
      */
     protected $fillable = [
-        'order_number'
+        'order_number','order_status'
     ];
 }

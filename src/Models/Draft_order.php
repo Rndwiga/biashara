@@ -4,7 +4,7 @@ namespace Tyondo\Biashara\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Orders extends Model
+class Draft_order extends Model
 {
     /**
      * The attributes that are mass assignable.

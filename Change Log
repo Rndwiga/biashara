@@ -1,0 +1,4 @@
+2017-04-14
+1. added -> Order status > Draft, Submitted, Processing, Completed -> in orders table
+2. Created draft orders table, routed front-end orders to the table and created routes.
+Remaining to configure orders-draft view to also use vuejs

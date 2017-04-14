@@ -28,9 +28,14 @@ return [
             'class' => 'fa fa-list fa-lg',
             'links' => [
                 [
-                    'title' => 'Order List',
+                    'title' => 'Orders',
                     'class' => 'fa fa-table fa-plus',
                     'route' => 'biashara.order.list'
+                ],
+                [
+                    'title' => 'Draft Orders',
+                    'class' => 'fa fa-table fa-list',
+                    'route' => 'biashara.order.draft'
                 ],
             ]
         ]
@@ -46,6 +51,7 @@ return [
     'views' => [
         'backend' => [
             'order-list' => 'biashara::backend.user.order-list',
+            'order-draft' => 'biashara::backend.user.order-draft',
         ],
         'layouts' => [
             'master' => 'biashara::frontend.layouts.master',
