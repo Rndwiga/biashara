@@ -5,7 +5,6 @@ namespace Tyondo\Biashara\Http\Controllers;
 use Illuminate\Http\Request;
 use Tyondo\Biashara\Models\Orders;
 use Tyondo\Biashara\Models\Draft_order;
-use Tyondo\Biashara\Models\orderNumber;
 use Illuminate\Support\Facades\Auth;
 use Tyondo\Biashara\Traits\OrderTransactions;
 
@@ -23,6 +22,11 @@ class BiasharaOrdersController extends Controller
 
         return view(config('biashara.views.backend.order-list'),compact('orders'));
     }
+    /**
+     * pushes draft orders to active orders while deleting draft items
+     * @param  $orderNumberId
+     * @return \Illuminate\Http\Response
+     */
     public function saveOrder($orderNumberId){
         $items = $this->getSingleDraftOrder($orderNumberId);
 
@@ -38,29 +42,49 @@ class BiasharaOrdersController extends Controller
                 //delete the item once saved
                 $this->deleteSingleDraftOrder($item->id);
             }
-            $this->changeOrderstatus($orderNumberId,'submitted');
-        return redirect(route('biashara.order.list'));
+            $this->changeOrderStatus($orderNumberId,'submitted');
+        return redirect(route('biashara.order.orders'));
 
     }
+    /**
+     * deletes all order items and marks the order number as deleted
+     * @param  $orderNumberId
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteOrder($orderNumberId){
+        $items = $this->getSingleDraftOrder($orderNumberId);
+
+            foreach ($items as $item){
+                $this->deleteSingleDraftOrder($item->id); //delete all the items recursively
+            }
+            $this->changeOrderStatus($orderNumberId,'deleted');
+        return redirect(route('biashara.order.orders'));
+
+    }
+    /**
+     * gets Active order from the db and processes it for display
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function orders($id = null)
+    {
+        if(count($this->getOrders(Auth::user()->id) )> 0){
+            $order_numbers = $this->getOrderNumbers();
+            $order_details = $this->getOrderDetails('active',$id, Auth::user()->id);
+            return view(config('biashara.views.backend.orders'),compact('order_numbers','order_details'));
+        }
+        return view(config('biashara.views.backend.orders'),compact('order_numbers','order_details'));
+    }
+    /**
+     * gets draft order from the db and processes it for display
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
     public function draftOrders($id = null)
     {
-        $orders =Draft_order::where('user_id', Auth::user()->id)->get();
-        if(count($orders )> 0){
-            $order_numbers = orderNumber::where('order_status', 'draft')->get();
-            if($id == null){
-                $latest_order = Draft_order::where('order_number_id', collect($orders)->last()->order_number_id)->get();
-            }else{
-                $latest_order = Draft_order::where('order_number_id', $id)->get();
-            }
-
-            //return collect($latest_order)->first();
-            $order_details = [
-                'details'=>  $latest_order,
-                'order_number'=>  collect($latest_order)->first(),
-                'sub_total' => collect($latest_order)->sum('product_total_order'),
-                'tax' => 16,
-                'total' => (((collect($latest_order)->sum('product_total_order'))/16)+collect($latest_order)->sum('product_total_order'))
-            ];
+        if(count($this->getDraftOrders(Auth::user()->id) )> 0){
+            $order_numbers = $this->getOrderNumbers('draft');
+            $order_details = $this->getOrderDetails('draft',$id, Auth::user()->id);
             return view(config('biashara.views.backend.order-draft'),compact('order_numbers','order_details'));
         }
         return view(config('biashara.views.backend.order-draft'),compact('order_numbers','order_details'));
@@ -96,61 +120,7 @@ class BiasharaOrdersController extends Controller
     public function storeOrder(Request $request)
     {
         $this->parseReceivedOrder($request);
-     // return $this->orderNumber();
-        $reset_cart = ['reset'=>1];
-        //return view(config('biashara.views.backend.order-list'),compact('orders'));
-        //return view(config('biashara.views.pages.about.index'),compact('reset_cart'));
-       // $orders =Draft_order::where('id', Auth::user()->id)->get();
-       // return view(config('biashara.views.backend.order-draft'),compact('reset_cart','orders'));
+       // $reset_cart = ['reset'=>1];
         return redirect(route('biashara.order.draft'));
-    }
-    /**
-     * Parse the submitted order
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    private function parseReceivedOrder($request){
-        $order_number = $this->orderNumber(); //generate new order number
-        $chunks = array_chunk($request->all(), 6); //expecting 6 entries per product
-        foreach ($chunks as $chunk){
-            if(count($chunk) == 6){ //filtering out unwanted array data
-                    $order = new Draft_order();
-                    $order->user_id = Auth::user()->id;
-                    $order->order_number_id = $order_number;
-                   // $order->order_status = 'draft';
-                    $order->product = $chunk[1];
-                    $order->quantity = $chunk[0];
-                    $order->unit_price = $chunk[2];
-                        $price = explode('h',$chunk[3]);
-                        $price = explode('.',$price[1]);
-                    $order->product_total_order = $price[0];
-                $order->save();
-            }
-        }
-        return true;
-    }
-    /**
-     * Generate a new Order Number increament from the last recorded number
-     *
-     * @param  null
-     * @return bool
-     */
-    private function orderNumber(){
-
-        $data = orderNumber::all();
-        $last_number = collect($data)->last();
-            if($last_number != null){
-                $segment = explode(config('biashara.order_number_prefix'),$last_number->order_number);
-                $increment= ++$segment[1];
-            }else{
-                $increment = 1;
-            }
-        $orderNumber =config('biashara.order_number_prefix'). $increment;
-        $order = new orderNumber();
-        $order->order_number = $orderNumber;
-        $order->order_status = 'draft';
-        $order->save();
-        return $order->id;
     }
 }

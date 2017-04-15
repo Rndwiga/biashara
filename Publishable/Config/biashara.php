@@ -30,6 +30,11 @@ return [
                 [
                     'title' => 'Orders',
                     'class' => 'fa fa-table fa-plus',
+                    'route' => 'biashara.order.orders'
+                ],
+                [
+                    'title' => 'list Orders',
+                    'class' => 'fa fa-table fa-plus',
                     'route' => 'biashara.order.list'
                 ],
                 [
@@ -50,6 +55,7 @@ return [
 
     'views' => [
         'backend' => [
+            'orders' => 'biashara::backend.user.orders',
             'order-list' => 'biashara::backend.user.order-list',
             'order-draft' => 'biashara::backend.user.order-draft',
         ],

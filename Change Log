@@ -1,4 +1,11 @@
 2017-04-14
 1. added -> Order status > Draft, Submitted, Processing, Completed -> in orders table
 2. Created draft orders table, routed front-end orders to the table and created routes.
+3. added ability to delete draft orders
+3. refactored BiasharaOrdersController to use functions from the created trait
+4. Added ability to view only submitted orders.
+
+Pending
+1. Change order status
+2.
 Remaining to configure orders-draft view to also use vuejs

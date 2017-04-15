@@ -73,8 +73,8 @@
                                 <tr>
                                     <td class="emptyrow">
                                         <a href="{{ route('biashara.order.save', $order->order_number_id) }}" class="btn btn-primary">submit</a>
-                                        <button class="btn btn-danger">Delete</button>
-                                        <button class="btn btn-success">Update</button>
+                                        <a href="{{ route('biashara.order.delete', $order->order_number_id) }}" class="btn btn-danger">Delete</a>
+                                        {{--<button class="btn btn-success">Update</button>--}}
                                     </td>
                                     <td class="emptyrow"></td>
                                     <td class="emptyrow text-center"><strong>Total</strong></td>

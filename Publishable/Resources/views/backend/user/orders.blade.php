@@ -24,79 +24,89 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-            @if(isset($order_details))
 
-            <div class="col-md-9 col-sm-9 col-xs-12">
+
+            <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="text-center"><strong>Order #{{$order_details['order_number']->orderNumber->order_number}}</strong></h3>
+                        @if(isset($order_details))
+                            <h3 class="text-center"><strong>Order #{{$order_details['order_number']->orderNumber->order_number}}</strong></h3>
+                        @else
+                            <h3>No orders</h3>
+                        @endif
                     </div>
                     <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-condensed">
-                                <thead>
-                                <tr>
-                                    <td><strong>Item Name</strong></td>
-                                    <td class="text-center"><strong>Item Price</strong></td>
-                                    <td class="text-center"><strong>Item Quantity</strong></td>
-                                    <td class="text-right"><strong>Total</strong></td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($order_details['details'] as $order)
-                                <tr>
-                                    <td>{{$order->product}}</td>
-                                    <td class="text-center">{{$order->unit_price}}</td>
-                                    <td class="text-center">{{$order->quantity}}</td>
-                                    <td class="text-right">{{$order->product_total_order}}</td>
-                                </tr>
-                                @endforeach
-                                <tr>
-                                    <td class="highrow"></td>
-                                    <td class="highrow"></td>
-                                    <td class="highrow text-center"><strong>Subtotal</strong></td>
-                                    <td class="highrow text-right">
-                                        {{isset($order_details)? $order_details['sub_total'] : null}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="emptyrow"></td>
-                                    <td class="emptyrow"></td>
-                                    <td class="emptyrow text-center"><strong>Tax</strong></td>
-                                    <td class="emptyrow text-right">{{isset($order_details)? $order_details['tax'].'%' : null}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="emptyrow">
-                                        <button class="btn btn-primary">submit</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </td>
-                                    <td class="emptyrow"></td>
-                                    <td class="emptyrow text-center"><strong>Total</strong></td>
-                                    <td class="emptyrow text-right">
-                                        {{isset($order_details)? $order_details['total'] : null}}
-                                    </td>
-                                </tr>
+                        @if(isset($order_details))
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <td><strong>Item Name</strong></td>
+                                        <td class="text-center"><strong>Item Price</strong></td>
+                                        <td class="text-center"><strong>Item Quantity</strong></td>
+                                        <td class="text-right"><strong>Total</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($order_details['details'] as $order)
+                                        <tr>
+                                            <td>{{$order->product}}</td>
+                                            <td class="text-center">{{$order->unit_price}}</td>
+                                            <td class="text-center">{{$order->quantity}}</td>
+                                            <td class="text-right">{{$order->product_total_order}}</td>
+                                        </tr>
+                                    @endforeach
+                                    <tr>
+                                        <td class="highrow"></td>
+                                        <td class="highrow"></td>
+                                        <td class="highrow text-center"><strong>Subtotal</strong></td>
+                                        <td class="highrow text-right">
+                                            {{isset($order_details)? $order_details['sub_total'] : null}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="emptyrow"></td>
+                                        <td class="emptyrow"></td>
+                                        <td class="emptyrow text-center"><strong>Tax</strong></td>
+                                        <td class="emptyrow text-right">{{isset($order_details)? $order_details['tax'].'%' : null}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="emptyrow">
+                                            <a href="{{ route('biashara.order.save', $order->order_number_id) }}" class="btn btn-primary">submit</a>
+                                            <a href="{{ route('biashara.order.delete', $order->order_number_id) }}" class="btn btn-danger">Delete</a>
+                                            {{--<button class="btn btn-success">Update</button>--}}
+                                        </td>
+                                        <td class="emptyrow"></td>
+                                        <td class="emptyrow text-center"><strong>Total</strong></td>
+                                        <td class="emptyrow text-right">
+                                            {{isset($order_details)? $order_details['total'] : null}}
+                                        </td>
+                                    </tr>
 
-                                </tbody>
-                            </table>
-                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
 
-            @endif
-            <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="panel panel-info">
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li  class="list-group-item list-group-item-info disabled">Order Number<span class="badge">Time Created</span></li>
                             @if(isset($order_numbers))
+                                <li  class="list-group-item list-group-item-info disabled">Order Number<span class="badge">Time Created</span></li>
                                 @foreach($order_numbers as $order)
-                                    <a href="{{ route('biashara.order.show', $order->id) }}" class="list-group-item">
-                                        {{$order->order_number}}
+                                    @if($order->order_status != 'deleted' && $order->order_status != 'draft')
+                                    <a href="{{ route('biashara.order.orders.show', $order->id) }}" class="list-group-item">
+                                        {{$order->order_number}} | {{$order->order_status}}
                                         <span class="badge">{{$order->created_at->diffForhumans()}}</span>
                                     </a>
+                                    @endif
                                 @endforeach
+                            @else
+                                <h3>No orders</h3>
                             @endif
                         </ul>
 

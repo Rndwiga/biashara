@@ -18,10 +18,16 @@ Route::group(['prefix'=>'auth'], function(){
 Route::group(['prefix'=>'order'], function(){
     event('biashara.routing', app('router'));
     $namespaceController = '\\'.'Tyondo\Biashara\Http\Controllers'.'\\';
+    
         Route::post('/details', $namespaceController.'BiasharaOrdersController@storeOrder');
         Route::get('/list', $namespaceController.'BiasharaOrdersController@index')->name('biashara.order.list');
+
+        Route::get('/orders', $namespaceController.'BiasharaOrdersController@orders')->name('biashara.order.orders');
+        Route::get('/orders/show/{id}', $namespaceController.'BiasharaOrdersController@orders')->name('biashara.order.orders.show');
+
         Route::get('/draft', $namespaceController.'BiasharaOrdersController@draftOrders')->name('biashara.order.draft');
         Route::get('/show/{id}', $namespaceController.'BiasharaOrdersController@draftOrders')->name('biashara.order.show');
 
         Route::get('/save/{orderNumberId}', $namespaceController.'BiasharaOrdersController@saveOrder')->name('biashara.order.save');
+        Route::get('/delete/{orderNumberId}', $namespaceController.'BiasharaOrdersController@deleteOrder')->name('biashara.order.delete');
 });
