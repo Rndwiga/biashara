@@ -72,8 +72,33 @@
                                     </tr>
                                     <tr>
                                         <td class="emptyrow">
-                                            <a href="{{ route('biashara.order.save', $order->order_number_id) }}" class="btn btn-primary">submit</a>
-                                            <a href="{{ route('biashara.order.delete', $order->order_number_id) }}" class="btn btn-danger">Delete</a>
+
+                                            <form>
+                                                <div class="row">
+                                                    <div class="input-group">
+                                                        {{--<div class="col-md-4 col-xs-12 col-sm-4">
+                                                            <a href="{{ route('biashara.order.delete', $order->order_number_id) }}" class="btn btn-danger form-control">Delete</a>
+                                                        </div>
+                                                        <div class="col-md-4 col-xs-12 col-sm-4">
+                                                            <a href="{{ route('biashara.order.save', $order->order_number_id) }}" class="btn btn-primary form-control">submit</a>
+                                                        </div>--}}
+                                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                                                            <div class="col-md-6">
+                                                                <select name="status" title="Change Order Status" class="form-control">
+                                                                    <option value="processing">Processing</option>
+                                                                    <option value="completed">Completed</option>
+                                                                    <option value="rejected">Rejected</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <button class="form-control btn btn-primary" type="submit">Change Status</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </form>
                                             {{--<button class="btn btn-success">Update</button>--}}
                                         </td>
                                         <td class="emptyrow"></td>

@@ -75,6 +75,11 @@ class BiasharaOrdersController extends Controller
         }
         return view(config('biashara.views.backend.orders'),compact('order_numbers','order_details'));
     }
+
+    public function orderStatus(Request $request){
+        $input = $request->all();
+        if($input)
+    }
     /**
      * gets draft order from the db and processes it for display
      * @param  $id

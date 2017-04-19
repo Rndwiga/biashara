@@ -67,7 +67,7 @@ trait OrderTransactions
         return false;
     }
     /**
-     * Generate a new Order Number increament from the last recorded number
+     * Generate a new Order Number increment from the last recorded number
      *
      * @param  null
      * @return bool

@@ -16,7 +16,7 @@ class CreateOrderNumbersTable extends Migration
         Schema::create('order_numbers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('order_number');
-            $table->enum('order_status', ['draft','deleted', 'submitted','processing','completed'])->nullable();
+            $table->enum('order_status', ['draft','deleted', 'submitted','processing','completed','rejected'])->nullable();
             $table->timestamps();
         });
     }
