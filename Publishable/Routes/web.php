@@ -47,7 +47,7 @@ Route::group(['prefix'=>'items'], function(){
             'edit' => 'biashara.item.edit',
         ]
     ]);
-    Route::get('/cart/{itemId}/{command}', $namespaceController.'ItemsController@cart')->name('biashara.item.cart');
+    Route::get('/cart/list', $namespaceController.'ItemsController@cartItems')->name('biashara.item.cart');
     Route::post('/cart', $namespaceController.'ItemsController@cart')->name('biashara.item.cart');
     /*Route::get('cart', function (){
         return view('aggregator::portal.admin.blog.media.index');

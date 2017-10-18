@@ -62,6 +62,9 @@ class ItemsController extends Controller
                 break;
         }
     }
+    public function cartItems(){
+        return $this->shoppingCart->getCartCount();
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -103,26 +103,35 @@ namespace Tyondo\Biashara\Helpers;
 		$cartArray = array();
 		if(session('cart') != ""){
             $cart = session('cart');
-			for($i=0;$i<=count($cart);$i++){
-                $cart = session('cart')[$i];
-				$lines = $this->getProductData($cart["product"]);
 
-				//return $lines;
-				$line = new \stdClass;
-				$line->id = $cart["product"];
-				$line->count = $cart["count"];
-				$line->product = $lines->item_name;
-				//$line->product = $lines['item_name'];
-				$line->total = ($lines->item_price*$cart["count"]);
-				$cartArray[] = $line;
-			}
+            $j = 0;
+            while($j <= count($cart)) {
+                if (!isset(session('cart')[$j])){
+                    break;
+                }
+                $cart = session('cart')[$j];
+
+                $lines = $this->getProductData($cart["product"]);
+
+                //return $lines;
+                $line = new \stdClass;
+                $line->id = $cart["product"];
+                $line->count = $cart["count"];
+                $line->product = $lines->item_name;
+                //$line->product = $lines['item_name'];
+                $line->total = ($lines->item_price*$cart["count"]);
+                $cartArray[] = $line;
+
+                $j++;
+            }
 		}
 		return $cartArray;
 	}
 	public function getCartCount(){
         $cartCount = null;
-		if($_SESSION['cart'] != ""){
-			$cartCount = json_decode($_SESSION['cart'], true);
+		if(session('cart') != ""){
+			//$cartCount = json_decode($_SESSION['cart'], true);
+			$cartCount = session('cart');
 		}
 		return count($cartCount);
 	}
