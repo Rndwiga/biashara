@@ -54,12 +54,24 @@ return [
     'slogan' => 'Your Construction. Your hardware.',
 
     'views' => [
+        'v1' => [
+            'partials' =>  [
+                'meta' => 'biashara::v1.partials.meta',
+                'gAnalytics' => 'biashara::v1.partials.GoogleAnalytics'
+            ],
+            'pages' => [
+                'products' => [
+                    'create' => 'biashara::v1.pages.products.create'
+                ]
+            ]
+        ],
         'backend' => [
             'orders' => 'biashara::backend.user.orders',
             'order-list' => 'biashara::backend.user.order-list',
             'order-draft' => 'biashara::backend.user.order-draft',
         ],
         'layouts' => [
+            'shop' => 'biashara::v1.layouts.shop',
             'master' => 'biashara::frontend.layouts.master',
             'includes'=>[
                 'footer'=>'biashara::frontend.layouts.includes.footer',

@@ -1,4 +1,4 @@
-@extends(config('mnara.views.layouts.master'))
+@extends(config('biashara.views.layouts.shop'))
 
 @section('content')
     <!-- page content -->

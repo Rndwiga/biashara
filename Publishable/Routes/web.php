@@ -3,7 +3,7 @@
 event('biashara.routing', app('router'));
 $namespaceController = '\\'.'Tyondo\Biashara\Http\Controllers'.'\\';
 
-Route::get('/', $namespaceController.'BiasharaFrontEndController@index')->name('biashara.index');
+#Route::get('/', $namespaceController.'BiasharaFrontEndController@index')->name('biashara.index');
 Route::get('/about', $namespaceController.'BiasharaFrontEndController@about')->name('biashara.about');
 Route::get('/contact', $namespaceController.'BiasharaFrontEndController@contact')->name('biashara.contact');
 Route::post('/contact', $namespaceController.'BiasharaFrontEndController@storeContact')->name('contact.store');
@@ -30,4 +30,26 @@ Route::group(['prefix'=>'order'], function(){
 
         Route::get('/save/{orderNumberId}', $namespaceController.'BiasharaOrdersController@saveOrder')->name('biashara.order.save');
         Route::get('/delete/{orderNumberId}', $namespaceController.'BiasharaOrdersController@deleteOrder')->name('biashara.order.delete');
+});
+
+Route::group(['prefix'=>'items'], function(){
+    event('biashara.routing', app('router'));
+    $namespaceController = '\\'.'Tyondo\Biashara\Http\Controllers'.'\\';
+
+    Route::resource('item', $namespaceController.'ItemsController', [
+        'names'=> [
+            'index' => 'biashara.item.index',
+            'create' => 'biashara.item.create',
+            'store' => 'biashara.item.store',
+            'update' => 'biashara.item.update',
+            'destroy' => 'biashara.item.destroy',
+            'show' => 'biashara.item.show',
+            'edit' => 'biashara.item.edit',
+        ]
+    ]);
+    Route::get('/cart/{itemId}/{command}', $namespaceController.'ItemsController@cart')->name('biashara.item.cart');
+    Route::post('/cart', $namespaceController.'ItemsController@cart')->name('biashara.item.cart');
+    /*Route::get('cart', function (){
+        return view('aggregator::portal.admin.blog.media.index');
+    })->name('admin.media.manage');*/
 });

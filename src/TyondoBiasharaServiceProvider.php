@@ -10,6 +10,7 @@ use Tyondo\Biashara\Console\Commands\Install;
 use Tyondo\Biashara\Console\Commands\Publish\Assets;
 use Tyondo\Biashara\Console\Commands\Publish\Config;
 use Tyondo\Biashara\Console\Commands\Publish\Migrations;
+use Tyondo\Biashara\Console\Commands\Publish\Routes;
 use Tyondo\Biashara\Console\Commands\Publish\Views;
 
 class TyondoBiasharaServiceProvider extends ServiceProvider
@@ -18,7 +19,7 @@ class TyondoBiasharaServiceProvider extends ServiceProvider
     protected $publishableDir = __DIR__ . '/../Publishable';
 
     protected $providers = [
-        'Tyondo\Mnara\MnaraServiceProvider'
+        //'Tyondo\Mnara\MnaraServiceProvider'
     ];
     protected $aliases = [
         'TyondoBiashara'=> 'Tyondo\Biashara\TyondoBiashara',
@@ -30,6 +31,7 @@ class TyondoBiasharaServiceProvider extends ServiceProvider
         Views::class,
         Migrations::class,
         Assets::class,
+        Routes::class,
         Config::class,
     ];
     /**

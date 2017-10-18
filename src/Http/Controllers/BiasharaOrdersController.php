@@ -18,9 +18,13 @@ class BiasharaOrdersController extends Controller
      */
     public function index()
     {
-        $orders =Orders::all();
+       // $orders =Orders::all();
 
-        return view(config('biashara.views.backend.order-list'),compact('orders'));
+        //return view(config('biashara.views.backend.order-list'),compact('orders'));
+        $tags = [];
+        $orders = null;
+        $categories = null;
+        return view(config('biashara.views.v1.pages.products.create'),compact('orders','tags','categories'));
     }
     /**
      * pushes draft orders to active orders while deleting draft items
@@ -78,7 +82,7 @@ class BiasharaOrdersController extends Controller
 
     public function orderStatus(Request $request){
         $input = $request->all();
-        if($input)
+        if($input){}
     }
     /**
      * gets draft order from the db and processes it for display
